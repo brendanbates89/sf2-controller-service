@@ -3,17 +3,23 @@
 namespace My\TestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use My\TestBundle\Light\LightSwitch;
 
 class LightController extends Controller
 {
-    public function switchAction($switch)
+    protected $lightSwitch;
+
+    public function __construct(LightSwitch $lightSwitch)
     {
-        $lightSwitch = $this->container->get('light_switch');
-        
+        $this->lightSwitch = $lightSwitch;
+    }
+
+    public function switchAction($switch)
+    {        
         if($switch === "on") {
-            $lightSwitch->on();
+            $this->lightSwitch->on();
         } else {
-            $lightSwitch->off();
+            $this->lightSwitch->off();
         }
         
         return $this->redirect($this->generateUrl('light_status'), 301);
@@ -21,7 +27,6 @@ class LightController extends Controller
     
     public function statusAction()
     {
-        $lightSwitch = $this->container->get('light_switch');
-        return $this->render('MyTestBundle:Light:status.html.twig', array('status' => $lightSwitch->getStatus()));
+        return $this->render('MyTestBundle:Light:status.html.twig', array('status' => $this->lightSwitch->getStatus()));
     }
 }
