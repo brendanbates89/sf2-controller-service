@@ -1,0 +1,4 @@
+services:
+    light_switch:
+        class: My\TestBundle\Light\LightSwitch
+        arguments: [@session]
