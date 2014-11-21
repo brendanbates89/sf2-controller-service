@@ -1,7 +1,7 @@
 light_switch:
     path:     /light/switch/{switch}
-    defaults: { _controller: MyTestBundle:Light:switch }
+    defaults: { _controller: light_controller:switchAction }
     
 light_status:
     path:     /light/status
-    defaults: { _controller: MyTestBundle:Light:status }
+    defaults: { _controller: light_controller:statusAction }
