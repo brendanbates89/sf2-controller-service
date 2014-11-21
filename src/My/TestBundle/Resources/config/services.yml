@@ -2,3 +2,7 @@ services:
     light_switch:
         class: My\TestBundle\Light\LightSwitch
         arguments: [@session]
+        
+    light_controller:
+        class: My\TestBundle\Controller\LightController
+        arguments: [@light_switch]
