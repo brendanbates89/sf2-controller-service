@@ -6,3 +6,5 @@ services:
     light_controller:
         class: My\TestBundle\Controller\LightController
         arguments: [@light_switch]
+        tags: 
+            - {name: container_aware}
